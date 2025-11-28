@@ -90,10 +90,10 @@ def train(args, label=None):
         lr_scheduler(optimizer_f, init_lr=args.lr , iter_num=iter_num, max_iter=args.max_iter)
 
         try:
-            inputs_source, labels_source = source_loader_iter.next()
+            inputs_source, labels_source = next(source_loader_iter)
         except:
             source_loader_iter = iter(dset_loaders["source"])
-            inputs_source, labels_source = source_loader_iter.next()       
+            inputs_source, labels_source = next(source_loader_iter)       
         inputs_source, labels_source = inputs_source.cuda(),  labels_source.cuda()
         _, outputs_source = base_network(inputs_source)
 

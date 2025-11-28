@@ -263,17 +263,17 @@ def train(args):
         lr_scheduler(optimizer_f, init_lr=args.botlr  , iter_num=iter_num, max_iter=args.max_iter)
 
         try:
-            inputs_proxy, labels_proxy = proxy_loader_iter.next()
+            inputs_proxy, labels_proxy = next(proxy_loader_iter)
         except:
             proxy_loader_iter = iter(dset_loaders["proxy"])
-            inputs_proxy, labels_proxy = proxy_loader_iter.next()
+            inputs_proxy, labels_proxy = next(proxy_loader_iter)
         inputs_proxy, labels_proxy = inputs_proxy.cuda(),  labels_proxy.cuda()
 
         try:
-            inputs_target_all, _, idx = target_loader_iter.next()
+            inputs_target_all, _, idx = next(target_loader_iter)
         except:
             target_loader_iter = iter(dset_loaders["target"])
-            inputs_target_all, _, idx = target_loader_iter.next()
+            inputs_target_all, _, idx = next(target_loader_iter)
 
         inputs_target = inputs_target_all[0].cuda()
         inputs_target_aug = inputs_target_all[1].cuda()
