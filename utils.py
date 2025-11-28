@@ -395,7 +395,7 @@ def cal_fea(loader, model):
     with torch.no_grad():
         iter_test = iter(loader)
         for i in range(len(loader)):
-            inputs, labels = iter_test.next()
+            inputs, labels = next(iter_test)
             inputs = inputs.cuda()
             feas, outputs = model(inputs)
             if start_test:
@@ -412,7 +412,7 @@ def cal_acc(loader, model, flag=True, fc=None):
     with torch.no_grad():
         iter_test = iter(loader)
         for i in range(len(loader)):
-            data = iter_test.next()
+            data = next(iter_test)
             inputs = data[0]
             labels = data[1]
             inputs = inputs.cuda()
@@ -443,7 +443,7 @@ def cal_acc2(loader, model, model2, flag=True, fc=None):
     with torch.no_grad():
         iter_test = iter(loader)
         for i in range(len(loader)):
-            data = iter_test.next()
+            data = next(iter_test)
             inputs = data[0]
             labels = data[1]
             inputs = inputs.cuda()
@@ -490,7 +490,7 @@ def cal_acc_visda(loader, model, flag=True, fc=None):
     with torch.no_grad():
         iter_test = iter(loader)
         for i in range(len(loader)):
-            data = iter_test.next()
+            data = next(iter_test)
             inputs = data[0]
             labels = data[1]
             inputs = inputs.cuda()
